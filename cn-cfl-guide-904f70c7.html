@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>足彩网 · 赛事信息与数据交流</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f8f9fb;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      color: #1e293b;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 1.25rem 3rem;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 720px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    /* hero 区域 ———— 极简留白 + 聚焦标题 */
+    .hero {
+      padding: 3.5rem 0 2rem;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .hero h1 {
+      font-size: 2.6rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: #0f172a;
+      line-height: 1.2;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero .subhead {
+      font-size: 1.1rem;
+      color: #475569;
+      max-width: 560px;
+      margin-bottom: 1.8rem;
+    }
+
+    .hero .tagline {
+      display: inline-block;
+      background: #f1f5f9;
+      padding: 0.3rem 0.9rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      color: #334155;
+      border: 1px solid #e2e8f0;
+    }
+
+    /* 通用段落层 */
+    .section {
+      padding: 2.5rem 0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .section:last-of-type {
+      border-bottom: none;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: #0f172a;
+      margin-bottom: 1.2rem;
+      letter-spacing: -0.01em;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      color: #1e293b;
+    }
+
+    p, li {
+      font-size: 1rem;
+      color: #334155;
+      margin-bottom: 0.9rem;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    ul li {
+      padding-left: 1.4rem;
+      position: relative;
+      margin-bottom: 0.65rem;
+    }
+
+    ul li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: #94a3b8;
+    }
+
+    /* 优势卡片 —— 无阴影、纤细边框 */
+    .advantage-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 0.2rem;
+    }
+
+    .advantage-card {
+      background: #ffffff;
+      border: 1px solid #e9edf3;
+      border-radius: 14px;
+      padding: 1.25rem 1.5rem;
+      transition: border 0.2s;
+    }
+
+    .advantage-card:hover {
+      border-color: #cbd5e1;
+    }
+
+    .advantage-card h3 {
+      margin-bottom: 0.3rem;
+    }
+
+    .advantage-card p {
+      font-size: 0.95rem;
+      color: #475569;
+      margin-bottom: 0;
+    }
+
+    /* 说明区 —— 紧凑读感 */
+    .explain-text {
+      background: #ffffff;
+      padding: 1.25rem 1.5rem;
+      border-radius: 14px;
+      border: 1px solid #e9edf3;
+    }
+
+    .explain-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* FAQ 部分 */
+    .faq-item {
+      background: #ffffff;
+      border: 1px solid #e9edf3;
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .faq-item strong {
+      display: block;
+      font-weight: 500;
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+      color: #0f172a;
+    }
+
+    .faq-item p {
+      font-size: 0.95rem;
+      margin-bottom: 0;
+      color: #475569;
+    }
+
+    /* 底部链接 ———— 窄、轻快 */
+    .footer-links {
+      padding: 2rem 0 0.5rem;
+      text-align: left;
+      font-size: 0.95rem;
+      color: #64748b;
+    }
+
+    .footer-links a {
+      color: #1e293b;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: #cbd5e1;
+      font-weight: 400;
+    }
+
+    .footer-links a:hover {
+      text-decoration-color: #64748b;
+    }
+
+    .footer-links .muted {
+      color: #94a3b8;
+      margin-top: 1rem;
+      display: block;
+      font-size: 0.85rem;
+    }
+
+    /* 响应式 */
+    @media (max-width: 600px) {
+      body {
+        padding: 0 1rem 2.5rem;
+      }
+
+      .hero h1 {
+        font-size: 2.1rem;
+      }
+
+      .advantage-card {
+        padding: 1rem 1.2rem;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .advantage-grid {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+
+      .advantage-card {
+        flex: 1 1 calc(50% - 0.5rem);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- hero 区 -->
+    <header class="hero">
+      <h1>看数据、聊赛事，<br>用自己舒服的方式</h1>
+      <p class="subhead">
+        从赛前信息到赛后复盘，<a href="https://cn-cfl.com" style="text-decoration: underline; text-underline-offset: 3px; text-decoration-color: #cbd5e1;">足彩网</a>提供结构化的赛事数据与交流空间，适合日常关注体育比赛的朋友。
+      </p>
+      <span class="tagline">⚽ 贴近比赛 · 轻量化界面</span>
+    </header>
+
+    <!-- 优势区 -->
+    <section class="section">
+      <h2>为什么值得留意</h2>
+      <div class="advantage-grid">
+        <div class="advantage-card">
+          <h3>📋 赛程一目了然</h3>
+          <p>提前整理未来几日的焦点赛事、开赛时间、对阵信息，省去四处翻找的麻烦。</p>
+        </div>
+        <div class="advantage-card">
+          <h3>📊 基础数据参考</h3>
+          <p>提供历史交锋、近期战绩、积分排名等常见维度，帮助你形成自己的判断。</p>
+        </div>
+        <div class="advantage-card">
+          <h3>💬 围绕比赛交流</h3>
+          <p>每场比赛都有专属讨论区，球迷、爱好者可以分享看法，氛围自然。</p>
+        </div>
+        <div class="advantage-card">
+          <h3>🧭 无干扰浏览</h3>
+          <p>界面克制，没有过度推送，专注于你关心的比赛本身。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 说明区 —— 从场景出发 -->
+    <section class="section">
+      <h2>适合哪些时刻</h2>
+      <div class="explain-text">
+        <p>
+          周末晚上想看看有哪些值得关注的联赛，或者中午休息时快速翻一下比分变化——<a href="https://cn-cfl.com" style="text-decoration: underline; text-underline-offset: 3px; text-decoration-color: #cbd5e1;">足彩网</a>的设计更偏向“工具感”，不打扰、不浮夸。你既可以把它当作赛程日历，也可以用来翻阅某支球队近期的状态曲线。
+        </p>
+        <p style="margin-top: 0.9rem;">
+          如果你习惯自己做功课，这里的数据面板比社交网站更直接；如果你只是想感受赛前气氛，评论区里的理性讨论也值得一看。不替你做决定，但提供靠谱的素材。
+        </p>
+      </div>
+    </section>
+
+    <!-- FAQ 摘要 -->
+    <section class="section">
+      <h2>几个常见疑问</h2>
+
+      <div class="faq-item">
+        <strong>数据更新快吗？</strong>
+        <p>通常比赛结束后几分钟内比分、统计就会同步，赛前信息每日刷新。遇到大型锦标赛会保持更高频次。</p>
+      </div>
+
+      <div class="faq-item">
+        <strong>需要注册才能看内容？</strong>
+        <p>大部分赛程、数据对所有人开放。交流区发言需要简单注册，主要是为了维持讨论秩序。</p>
+      </div>
+
+      <div class="faq-item">
+        <strong>移动端体验如何？</strong>
+        <p>页面针对手机做了适配，卡片、表格都能正常阅读，没有恼人的缩放问题。</p>
+      </div>
+
+      <div class="faq-item">
+        <strong>和足彩网上的信息有什么不同？</strong>
+        <p>这里更聚焦比赛本身，把历史数据、即时比分和社区讨论放在同等重要的位置，界面更安静。</p>
+      </div>
+    </section>
+
+    <!-- 底部链接 + 自然嵌入 -->
+    <footer class="footer-links">
+      <p>
+        日常关注体育赛事，试试在 <a href="https://cn-cfl.com">足彩网</a> 里建立自己的信息流。赛程、数据、讨论，都放在同一个地方。
+      </p>
+      <p style="margin-top: 0.5rem;">
+        如果你喜欢更直接的浏览方式，也可以把它当作赛前备忘录。
+      </p>
+      <span class="muted">
+        · 信息仅供参考 · 量力而行 ·
+      </span>
+    </footer>
+
+  </div>
+</body>
+</html>
