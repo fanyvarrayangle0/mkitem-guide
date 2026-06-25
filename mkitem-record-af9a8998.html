@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.2">
+  <title>简明指南 · mk体育</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #faf9f7;
+      color: #1e1e1e;
+      line-height: 1.7;
+    }
+
+    /* hero 深色区 */
+    .hero {
+      background: #0d1b2a;
+      color: #e5e9f0;
+      padding: 5rem 1.5rem 4.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -30%;
+      left: -20%;
+      width: 70%;
+      height: 140%;
+      background: radial-gradient(circle at 30% 40%, rgba(43, 108, 176, 0.15), transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      max-width: 780px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-size: 2.6rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero .sub {
+      font-size: 1.15rem;
+      color: #aac1e0;
+      margin-bottom: 2rem;
+      font-weight: 350;
+    }
+
+    .hero .guide-note {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.04);
+      padding: 0.6rem 1.4rem;
+      border-radius: 60px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.95rem;
+      color: #bdd3ef;
+    }
+
+    /* 优势区 浅色底 */
+    .strength-section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem 2.5rem;
+      background: #ffffff;
+      border-bottom: 1px solid #e8e6e2;
+    }
+
+    .strength-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+    }
+
+    .strength-card {
+      padding: 0.25rem 0;
+    }
+
+    .strength-card h3 {
+      font-size: 1.25rem;
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+      color: #1f2e46;
+    }
+
+    .strength-card p {
+      color: #3a3f4b;
+      font-size: 0.98rem;
+    }
+
+    /* 说明区 (简明指南) */
+    .guide-section {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 3.5rem 1.5rem 2.5rem;
+      background: #ffffff;
+    }
+
+    .guide-section h2 {
+      font-size: 1.7rem;
+      font-weight: 450;
+      margin-bottom: 1.8rem;
+      color: #0d1b2a;
+      letter-spacing: -0.01em;
+    }
+
+    .guide-section p {
+      margin-bottom: 1.2rem;
+      font-size: 1rem;
+    }
+
+    .guide-section .highlight-link {
+      color: #1d4f8f;
+      text-decoration: none;
+      border-bottom: 1px solid #b6cae5;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .guide-section .highlight-link:hover {
+      color: #0b3b6b;
+      border-bottom-color: #0b3b6b;
+    }
+
+    .guide-note-box {
+      background: #f2f5fa;
+      border-left: 3px solid #1d4f8f;
+      padding: 1.2rem 1.6rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1.8rem 0;
+      font-size: 0.97rem;
+      color: #1f2e46;
+    }
+
+    /* FAQ 摘要 */
+    .faq-summary {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 3rem;
+      background: #ffffff;
+    }
+
+    .faq-summary h2 {
+      font-size: 1.5rem;
+      font-weight: 450;
+      margin-bottom: 1.6rem;
+      color: #0d1b2a;
+    }
+
+    .faq-item {
+      margin-bottom: 1.4rem;
+    }
+
+    .faq-item strong {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+      color: #1f2e46;
+    }
+
+    .faq-item p {
+      color: #3a3f4b;
+      font-size: 0.96rem;
+      margin: 0;
+    }
+
+    .faq-more {
+      margin-top: 1.2rem;
+      color: #4f5b68;
+      font-size: 0.95rem;
+    }
+
+    .faq-more a {
+      color: #1d4f8f;
+      text-decoration: none;
+      border-bottom: 1px solid #b6cae5;
+    }
+
+    .faq-more a:hover {
+      border-bottom-color: #1d4f8f;
+    }
+
+    /* 底部链接 */
+    .footer-links {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 3.5rem;
+      background: #faf9f7;
+      border-top: 1px solid #e2dfda;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1.8rem;
+    }
+
+    .footer-links .brand {
+      font-size: 1.1rem;
+      font-weight: 450;
+      color: #1f2e46;
+    }
+
+    .footer-links .link-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 2rem;
+    }
+
+    .footer-links a {
+      color: #2c3e5c;
+      text-decoration: none;
+      font-size: 0.95rem;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+
+    .footer-links a:hover {
+      border-bottom-color: #2c3e5c;
+    }
+
+    .footer-note {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0.5rem 1.5rem 2rem;
+      background: #faf9f7;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #6a737f;
+    }
+
+    /* 响应式 */
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .guide-section h2 {
+        font-size: 1.4rem;
+      }
+      .faq-summary h2 {
+        font-size: 1.3rem;
+      }
+      .footer-links {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- hero 区 -->
+  <header class="hero">
+    <div class="hero-inner">
+      <h1>mk体育 · 简明指南</h1>
+      <p class="sub">从基础到实用，保持简单的访问节奏</p>
+      <span class="guide-note">一份克制而清晰的提醒</span>
+    </div>
+  </header>
+
+  <!-- 优势区 -->
+  <section class="strength-section">
+    <div class="strength-grid">
+      <div class="strength-card">
+        <h3>直接的结构</h3>
+        <p>信息层级清楚，减少不必要的跳转。每个页面都有明确的指向，不堆叠无关内容。</p>
+      </div>
+      <div class="strength-card">
+        <h3>低干扰体验</h3>
+        <p>没有弹窗、没有自动播放，专注内容本身。适合需要快速确认信息的场景。</p>
+      </div>
+      <div class="strength-card">
+        <h3>克制的反馈</h3>
+        <p>操作反馈自然温和，不制造焦虑。所有功能都基于实际需要，不夸大也不诱导。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 说明区：从简明指南和访问提醒的角度 -->
+  <section class="guide-section">
+    <h2>访问前值得留意的三件事</h2>
+
+    <p>
+      如果你第一次接触 <a href="https://mkitem.com.cn" class="highlight-link">mk体育</a>，
+      可以先花一分钟看看页面的大致分区。通常首页会展示近期动态和主要分类，
+      不必急于点开每一个标签，按自己的节奏浏览即可。
+    </p>
+
+    <p>
+      网站的整体信息结构偏向直接：导航栏放置了常用入口，
+      内容区域按照主题分组。如果遇到需要登录或验证的地方，
+      请注意核对页面地址，养成确认域名的小习惯。
+    </p>
+
+    <div class="guide-note-box">
+      <strong>一个简单的建议：</strong> 每次访问时，留意一下浏览器地址栏是否显示
+      <span style="font-family: monospace; background: #e5eaf0; padding: 0 4px; border-radius: 3px;">https://mkitem.com.cn</span>，
+      这是确认你身处正确页面的最直接方式。不点击来历不明的短链接或第三方跳转。
+    </div>
+
+    <p>
+      另外，<a href="https://mkitem.com.cn" class="highlight-link">mk体育</a> 的部分内容
+      可能包含外部引用或合作方信息，它们通常以明确标注的方式呈现。
+      你可以根据自己的兴趣选择是否深入了解，所有操作都不是强制性的。
+    </p>
+  </section>
+
+  <!-- FAQ 摘要 -->
+  <section class="faq-summary">
+    <h2>常见疑问 · 简答摘要</h2>
+
+    <div class="faq-item">
+      <strong>是否需要注册才能浏览？</strong>
+      <p>大部分内容可以直接阅读，只有少数互动功能可能要求登录。具体以页面实际提示为准。</p>
+    </div>
+
+    <div class="faq-item">
+      <strong>移动端适配怎么样？</strong>
+      <p>页面采用响应式设计，在手机和电脑上都能获得相对一致的阅读体验。如果遇到显示异常，可以尝试刷新或旋转屏幕。</p>
+    </div>
+
+    <div class="faq-item">
+      <strong>信息多久更新一次？</strong>
+      <p>没有固定周期，但主要版块会保持相对及时的补充。你可以通过导航中的动态区域了解最近变化。</p>
+    </div>
+
+    <div class="faq-more">
+      更多细节可参考站点内的帮助说明，或者直接通过页面底部的联系方式询问。
+    </div>
+  </section>
+
+  <!-- 底部链接区 -->
+  <footer class="footer-links">
+    <span class="brand">mk体育</span>
+    <div class="link-group">
+      <a href="https://mkitem.com.cn">mk体育</a>
+      <a href="https://mkitem.com.cn">mk体育</a>
+      <a href="https://mkitem.com.cn">mk体育</a>
+      <a href="https://mkitem.com.cn">mk体育</a>
+    </div>
+  </footer>
+
+  <div class="footer-note">
+    内容仅供信息参考 · 2025
+  </div>
+
+</body>
+</html>
